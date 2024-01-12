@@ -8,27 +8,14 @@ const IP_V6_REGEX = /^([0-9a-fA-F]{1,4}:){7}([0-9a-fA-F]{1,4}|:)$/;
 const DOMAIN_REGEX =
   /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 
-export async function searchQuery(input: string): Promise<IpifyResult> {
+export async function searchQuery(input: string) {
   console.log(input);
   if (isIPv4(input) || isIPv6(input)) {
     const url = `${IPIFY_URL}&ipAddress=${input}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(
-        `Network response was not ok (${res.status} ${res.statusText})`
-      );
-    }
-    return await res.json();
+    return await fetch(url);
   } else if (isDomain(input)) {
     const url = `${IPIFY_URL}&domain=${input}`;
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      throw new Error(
-        `Network response was not ok (${res.status} ${res.statusText})`
-      );
-    }
-    return await res.json();
+    return await fetch(url);
   } else {
     throw Error("Invalid search parameters. Must be valid IP or Domain.");
   }

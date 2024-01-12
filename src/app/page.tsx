@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { appBaseUrl } from "./lib/utils";
+import { IpifyResult } from "./lib/ipify";
 
 function IP() {
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
@@ -15,16 +16,17 @@ function IP() {
 
 async function getData() {
   const ip = await fetch(`${appBaseUrl()}/api/location`);
-  const res = await ip.json();
+  const res = (await ip.json()) as IpifyResult;
+
   return res;
 }
 
 export default async function Home() {
-  // const ip = await getData();
+  const ip = await getData();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <p></p>
+      <p>{ip.ip}</p>
       <Suspense fallback={null}>
         <IP />
       </Suspense>
