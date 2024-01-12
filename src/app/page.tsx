@@ -2,6 +2,9 @@ import { headers } from "next/headers";
 import { Suspense, useEffect, useState } from "react";
 import { appBaseUrl } from "./lib/utils";
 import { IpifyResult, searchQuery } from "./lib/ipify";
+import Image from "next/image";
+import { Map } from "@/components/Map";
+import DynamicTestMap from "@/components/MapWrapper";
 
 function IP() {
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
@@ -36,12 +39,18 @@ export default async function Home() {
   const data = await getData(IP());
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {data && <p>{data.ip}</p>}
-
-      <Suspense fallback={null}>
-        <IP />
-      </Suspense>
+    <main className="flex min-h-screen flex-col">
+      <div>
+        <Image
+          src={"/img/pattern-bg-desktop.png"}
+          width={1440}
+          height={280}
+          alt="bg"
+        />
+        <div>
+          <DynamicTestMap />
+        </div>
+      </div>
     </main>
   );
 }
