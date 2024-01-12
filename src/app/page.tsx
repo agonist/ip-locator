@@ -15,14 +15,22 @@ function IP() {
 }
 
 async function getData() {
-  const ip = await fetch(`${appBaseUrl()}/api/location`);
-  const res = (await ip.json()) as IpifyResult;
+  const res = await fetch(`${appBaseUrl()}/api/location`);
+  if (!res.ok) {
+    return null;
+  }
 
-  return res;
+  const data = (await res.json()) as IpifyResult;
+
+  return data;
 }
 
 export default async function Home() {
   const ip = await getData();
+
+  if (!ip) {
+    return <p>error</p>;
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
