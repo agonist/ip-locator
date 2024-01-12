@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { Suspense } from "react";
+import { appBaseUrl } from "./lib/utils";
 
 function IP() {
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
@@ -13,7 +14,7 @@ function IP() {
 }
 
 async function getData() {
-  const ip = await fetch("http://localhost:3000/api/location");
+  const ip = await fetch(`${appBaseUrl()}/api/location`);
   const res = await ip.json();
   return res;
 }
