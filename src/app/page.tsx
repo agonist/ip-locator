@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { appBaseUrl } from "./lib/utils";
 import { IpifyResult } from "./lib/ipify";
 
@@ -17,7 +17,7 @@ function IP() {
 async function getData() {
   const res = await fetch(`${appBaseUrl()}/api/location`);
   if (!res.ok) {
-    return null;
+    return undefined;
   }
 
   const data = (await res.json()) as IpifyResult;
@@ -26,11 +26,17 @@ async function getData() {
 }
 
 export default async function Home() {
-  const ip = await getData();
+  const [data, setData] = useState<undefined | IpifyResult>();
+
+  useEffect(() => {
+    getData()
+      .then((res) => setData(res))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {ip && <p>{ip.ip}</p>}
+      {data && <p>{data.ip}</p>}
 
       <Suspense fallback={null}>
         <IP />
