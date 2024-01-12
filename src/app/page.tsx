@@ -1,18 +1,19 @@
-import { headers } from "next/headers";
+"use client";
+
 import { Suspense, useEffect, useState } from "react";
 import { appBaseUrl } from "./lib/utils";
 import { IpifyResult } from "./lib/ipify";
 
-function IP() {
-  const FALLBACK_IP_ADDRESS = "0.0.0.0";
-  const forwardedFor = headers().get("x-forwarded-for");
+// function IP() {
+//   const FALLBACK_IP_ADDRESS = "0.0.0.0";
+//   const forwardedFor = headers().get("x-forwarded-for");
 
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
-  }
+//   if (forwardedFor) {
+//     return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
+//   }
 
-  return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
-}
+//   return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+// }
 
 async function getData() {
   const res = await fetch(`${appBaseUrl()}/api/location`);
@@ -25,7 +26,7 @@ async function getData() {
   return data;
 }
 
-export default async function Home() {
+export default function Home() {
   const [data, setData] = useState<undefined | IpifyResult>();
 
   useEffect(() => {
@@ -37,10 +38,6 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {data && <p>{data.ip}</p>}
-
-      <Suspense fallback={null}>
-        <IP />
-      </Suspense>
     </main>
   );
 }
