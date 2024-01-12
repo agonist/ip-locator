@@ -17,6 +17,8 @@ export async function GET(req: Request) {
       return NextResponse.json(res);
     })
     .catch((err) => {
-      return NextResponse.json({ error: err });
+      return NextResponse.json({ error: err }, { status: 402 });
     });
+
+  return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
 }
