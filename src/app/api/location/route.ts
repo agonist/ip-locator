@@ -1,4 +1,4 @@
-import { searchQuery } from "@/app/lib/ipify";
+import { searchQuery } from "@/lib/ipify";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
