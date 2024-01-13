@@ -24,7 +24,8 @@ export const Map = () => {
       center={[51.505, -0.09]}
       zoom={13}
       scrollWheelZoom={false}
-      className="w-[100%] h-96"
+      style={{ width: "100%", height: "500px" }}
+      className="z-10"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -33,19 +33,4 @@ function isDomain(input: string) {
   return DOMAIN_REGEX.test(input);
 }
 
-export interface IpifyResult {
-  ip: string;
-  location: Location;
-  isp: string;
-}
 
-export interface Location {
-  country: string;
-  region: string;
-  city: string;
-  lat: number;
-  lng: number;
-  postalCode: string;
-  timezone: string;
-  geonameId: number;
-}

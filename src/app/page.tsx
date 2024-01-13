@@ -1,10 +1,9 @@
 import { headers } from "next/headers";
-import { Suspense, useEffect, useState } from "react";
-import { appBaseUrl } from "./lib/utils";
-import { IpifyResult, searchQuery } from "./lib/ipify";
+import { searchQuery } from "./lib/ipify";
 import Image from "next/image";
-import { Map } from "@/components/Map";
 import DynamicTestMap from "@/components/MapWrapper";
+import { DisplayBox } from "@/components/display-box";
+import { LocationInfos } from "@/components/location-infos";
 
 function IP() {
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
@@ -39,14 +38,20 @@ export default async function Home() {
   const data = await getData(IP());
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <div>
-        <Image
-          src={"/img/pattern-bg-desktop.png"}
-          width={1440}
-          height={280}
-          alt="bg"
-        />
+    <main className="flex min-h-screen flex-col ">
+      <div className="flex flex-col bg-red-400 ">
+        <div className="relative w-full bg-gray-300 ">
+          <Image
+            src={"/img/pattern-bg-desktop.png"}
+            width={1440}
+            height={280}
+            alt="bg"
+          />
+          <div className="absolute bottom-0 translate-y-1/2 w-full flex justify-center z-50">
+            <LocationInfos searchData={data} />
+            {/* <div className=" h-32 w-32 bg-blue-300 "></div> */}
+          </div>
+        </div>
         <div>
           <DynamicTestMap />
         </div>
