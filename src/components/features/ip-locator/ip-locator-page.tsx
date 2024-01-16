@@ -4,7 +4,7 @@ import DynamicTestMap from "@/components/common/map/map-wrapper";
 import { LocationInfos } from "@/components/features/ip-locator/location-infos";
 import { SearchForm } from "@/components/features/ip-locator/search-form";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HeaderBg } from "./header-bg";
 import { fetchLocation } from "@/lib/api/location";
 
@@ -19,6 +19,10 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
     queryKey: ["location", current],
     queryFn: () => fetchLocation(current),
   });
+
+  useEffect(() => {
+    console.log(current);
+  }, [current]);
 
   return (
     <main className="flex flex-col h-screen ">
