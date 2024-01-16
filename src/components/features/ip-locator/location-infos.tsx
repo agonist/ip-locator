@@ -26,28 +26,28 @@ export const LocationInfos: React.FC<Props> = ({
       <TextLabel
         label="IP ADDRESS"
         value={searchData ? searchData.ip : "-"}
-        className="md:w-1/4 items-center md:items-start"
+        className="md:w-1/4 md:max-w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
       <TextLabel
         label="LOCATION"
         value={searchData ? searchData.location.city : "-"}
-        className="md:w-1/4 items-center md:items-start"
+        className="md:w-1/4 md:max-w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
       <TextLabel
         label="TIMEZONE"
         value={searchData ? `UTC ${searchData.location.timezone}` : "-"}
-        className="md:w-1/4 items-center md:items-start"
+        className="md:w-1/4 md:max-w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
       <TextLabel
         label="ISP"
         value={searchData ? searchData.isp : "-"}
-        className="md:w-1/4 items-center md:items-start"
+        className="md:w-1/4 md:max-w-1/4 items-center md:items-start"
         loading={loading}
       />
     </div>

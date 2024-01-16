@@ -20,7 +20,11 @@ export const TextLabel: React.FC<Props> = ({
       {loading ? (
         <Skeleton className="w-[100px] h-[32px] rounded-full" />
       ) : (
-        <p className="text-black text-2xl font-medium line-clamp-2">{value}</p>
+        <div className="min-w-0 ">
+          <p className="text-black text-2xl font-medium line-clamp-1  overflow-ellipsis  max-w-40 ">
+            {value}
+          </p>
+        </div>
       )}
     </div>
   );

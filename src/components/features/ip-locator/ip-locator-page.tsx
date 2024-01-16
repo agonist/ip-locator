@@ -19,11 +19,7 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
     queryKey: ["location", current],
     queryFn: () => fetchLocation(current),
   });
-
-  useEffect(() => {
-    console.log(current);
-  }, [current]);
-
+  
   return (
     <main className="flex flex-col h-screen ">
       <div className="relative w-full h-[45%] md:h-[35%]">
