@@ -6,13 +6,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const appBaseUrl = () => {
-  if (process.env.VERCEL_ENV === "production") {
-    return `https://${process.env.VERCEL_URL}`;
-  } else if (
-    process.env.VERCEL_ENV === "preview" ||
-    process.env.VERCEL_ENV === "development"
-  ) {
-    return `https://${process.env.VERCEL_URL}`;
+  const env = process.env.VERCEL_ENV ?? process.env.NEXT_PUBLIC_VERCEL_ENV;
+  const url = process.env.VERCEL_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
+
+  if (env === "production") {
+    return `https://${url}`;
+  } else if (env === "preview" || env === "development") {
+    return `https://${url}`;
   } else {
     return "http://localhost:3000";
   }
