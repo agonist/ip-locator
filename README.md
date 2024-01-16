@@ -27,7 +27,7 @@ Users should be able to:
 
 - NextJS
 - TailwindCSS
-- Love
+- Typescript
 
 ### Showcase
 

@@ -19,13 +19,13 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
     queryKey: ["location", current],
     queryFn: () => fetchLocation(current),
   });
-  
+
   return (
     <main className="flex flex-col h-screen ">
       <div className="relative w-full h-[45%] md:h-[35%]">
         <HeaderBg />
-        <div className="absolute top-0 w-full items-center flex flex-col space-y-4 h-full mt-8 md:my-16">
-          <h1 className="text-2xl md:text-3xl font-medium">
+        <div className="absolute top-0 w-full items-center flex flex-col space-y-5 h-full mt-8 md:my-16">
+          <h1 className="text-white text-2xl md:text-3xl font-medium">
             IP Address Tracker
           </h1>
           <div className="flex px-4 w-full justify-center">
