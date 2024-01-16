@@ -18,6 +18,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json(res);
     })
     .catch((err) => {
-      return NextResponse.json({ error: err }, { status: 401 });
+      return NextResponse.json({ error: err }, { status: 402 });
     });
 }
