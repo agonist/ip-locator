@@ -1,10 +1,11 @@
 import { searchQuery } from "@/lib/ipify";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-  const ip = (req.headers.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0];
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
+  const search = searchParams.get("search") ?? "";
 
-  searchQuery(ip)
+  return searchQuery(search)
     .then((res) => {
       if (!res.ok) {
         throw new Error(
@@ -17,8 +18,6 @@ export async function GET(req: Request) {
       return NextResponse.json(res);
     })
     .catch((err) => {
-      return NextResponse.json({ error: err }, { status: 402 });
+      return NextResponse.json({ error: err }, { status: 401 });
     });
-
-  return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
 }
