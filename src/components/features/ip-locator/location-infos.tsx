@@ -26,7 +26,7 @@ export const LocationInfos: React.FC<Props> = ({
       <TextLabel
         label="IP ADDRESS"
         value={searchData ? searchData.ip : "-"}
-        className="md:w-1/4 items-center md:items-star"
+        className="md:w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />

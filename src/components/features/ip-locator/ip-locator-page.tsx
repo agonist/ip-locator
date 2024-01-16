@@ -3,7 +3,6 @@
 import DynamicTestMap from "@/components/common/map/map-wrapper";
 import { LocationInfos } from "@/components/features/ip-locator/location-infos";
 import { SearchForm } from "@/components/features/ip-locator/search-form";
-import { appBaseUrl } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { HeaderBg } from "./header-bg";
@@ -17,7 +16,7 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
   const [current, setCurrent] = useState(initialIp);
 
   const { isPending, isError, data, refetch } = useQuery({
-    queryKey: ["repoData", current],
+    queryKey: ["location", current],
     queryFn: () => fetchLocation(current),
   });
 
@@ -31,7 +30,7 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
           </h1>
           <div className="flex px-4 w-full justify-center">
             <SearchForm
-              className="w-full md:w-96"
+              className="w-full md:w-3/6 lg:w-2/6"
               onSearch={(value) => {
                 setCurrent(value);
               }}
@@ -48,7 +47,7 @@ export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-center w-full h-[55%] md:h-[65%]">
+      <div className="flex items-center justify-center w-full h-[55%] md:h-[65%] bg-neutral-400">
         {isError && (
           <div className="flex flex-col items-center">
             <p>Something went wrong</p>

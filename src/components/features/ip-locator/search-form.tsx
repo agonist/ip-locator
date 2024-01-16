@@ -2,7 +2,6 @@
 
 import { isDomain, isIPv4, isIPv6 } from "@/lib/ipify";
 import { cn } from "@/lib/utils";
-
 import { useState } from "react";
 
 type Props = {
@@ -33,12 +32,13 @@ export const SearchForm: React.FC<Props> = ({ onSearch, className }) => {
     >
       <input
         placeholder="Search for any address IP or domain"
+        type="text"
         className="flex w-full rounded-md text-very-dark-grey bg-transparent px-3 py-1 text-sm placeholder:text-neutral-500 focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50"
         value={value}
         onChange={(ev) => setValue(ev.target.value)}
       />
       <button
-        className="bg-very-dark-grey text-white p-4 px-6 rounded-r-xl hover:bg-dark-grey"
+        className="bg-black text-white p-4 px-6 rounded-r-xl hover:bg-very-dark-grey"
         onClick={() => {
           handleSearch(value);
         }}
