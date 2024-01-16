@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 
 type Props = {
   label: string;
@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export const DisplayBox: React.FC<Props> = ({
+export const TextLabel: React.FC<Props> = ({
   label,
   value,
   loading,

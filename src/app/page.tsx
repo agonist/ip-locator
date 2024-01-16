@@ -1,6 +1,6 @@
-import { ClientPage } from "./client-page";
+import { IpLocatorPage } from "@/components/features/ip-locator/ip-locator-page";
 import { clientIP } from "@/lib/ip";
 
 export default async function Home() {
-  return <ClientPage initialIp={clientIP()} />;
+  return <IpLocatorPage initialIp={clientIP()} />;
 }

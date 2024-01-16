@@ -1,8 +1,9 @@
 import React from "react";
-import { DisplayBox } from "./display-box";
-import { Separator } from "./ui/separator";
+
 import { cn } from "@/lib/utils";
 import { IpifyResult } from "@/lib/ipify";
+import { TextLabel } from "@/components/common/text-label";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
   searchData?: IpifyResult;
@@ -22,28 +23,28 @@ export const LocationInfos: React.FC<Props> = ({
         className
       )}
     >
-      <DisplayBox
+      <TextLabel
         label="IP ADDRESS"
         value={searchData ? searchData.ip : "-"}
-        className="md:w-1/4 items-center md:items-start"
+        className="md:w-1/4 items-center md:items-star"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
-      <DisplayBox
+      <TextLabel
         label="LOCATION"
         value={searchData ? searchData.location.city : "-"}
         className="md:w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
-      <DisplayBox
+      <TextLabel
         label="TIMEZONE"
-        value={searchData ? searchData.location.timezone : "-"}
+        value={searchData ? `UTC ${searchData.location.timezone}` : "-"}
         className="md:w-1/4 items-center md:items-start"
         loading={loading}
       />
       <Separator orientation="vertical" className="hidden md:block" />
-      <DisplayBox
+      <TextLabel
         label="ISP"
         value={searchData ? searchData.isp : "-"}
         className="md:w-1/4 items-center md:items-start"
@@ -52,5 +53,3 @@ export const LocationInfos: React.FC<Props> = ({
     </div>
   );
 };
-
-const Infos = () => {};

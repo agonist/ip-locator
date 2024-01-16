@@ -1,7 +1,7 @@
 "use client";
 
-import DynamicTestMap from "@/components/map-wrapper";
-import { LocationInfos } from "@/components/location-infos";
+import DynamicTestMap from "@/components/common/map/map-wrapper";
+import { LocationInfos } from "@/components/features/ip-locator/location-infos";
 import { SearchForm } from "@/components/search-form";
 import { searchQuery } from "@/lib/ipify";
 import { useQuery } from "@tanstack/react-query";
@@ -12,7 +12,7 @@ type Props = {
   initialIp: string;
 };
 
-export const ClientPage: React.FC<Props> = ({ initialIp }) => {
+export const IpLocatorPage: React.FC<Props> = ({ initialIp }) => {
   const [current, setCurrent] = useState("185.39.141.151");
 
   const { isPending, error, data } = useQuery({
@@ -39,7 +39,7 @@ export const ClientPage: React.FC<Props> = ({ initialIp }) => {
 
   return (
     <main className="flex flex-col h-screen ">
-      <div className="relative w-full h-[50%] md:h-[30%]">
+      <div className="relative w-full h-[45%] md:h-[35%]">
         <div className="">
           <Image
             src={"/img/pattern-bg-desktop.png"}
@@ -57,8 +57,8 @@ export const ClientPage: React.FC<Props> = ({ initialIp }) => {
           />
         </div>
 
-        <div className="absolute top-0 w-full items-center flex flex-col space-y-4 h-full my-8">
-          <h1 className="text-3xl md:text-4xl font-medium">
+        <div className="absolute top-0 w-full items-center flex flex-col space-y-4 h-full mt-8 md:my-16">
+          <h1 className="text-2xl md:text-3xl font-medium">
             IP Address Tracker
           </h1>
           <div className="flex px-4 w-full justify-center">
@@ -80,8 +80,10 @@ export const ClientPage: React.FC<Props> = ({ initialIp }) => {
           </div>
         </div>
       </div>
-      <div className="h-[50%] md:h-[70%]">
-        {data && <DynamicTestMap location={data.location} />}
+      <div className="h-[55%] md:h-[65%]">
+        {data && (
+          <DynamicTestMap lat={data.location.lat} lng={data.location.lng} />
+        )}
       </div>
     </main>
   );
