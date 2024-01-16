@@ -38,4 +38,5 @@ Users should be able to:
 - The `/api/location` endpoint is public. It should at least be domain restricted to avoid ipify api credit usage.
 - We could server side render the first load with the user IP to avoid loading.
 - Instead of an endpoint we could use NextJS server action to execute server code without the need of exposing a public endpoint.
+- Tooltip for text values that are truncated
 
